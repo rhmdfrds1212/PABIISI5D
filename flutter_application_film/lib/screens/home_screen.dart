@@ -34,8 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    _loadMovies();
+
     super.initState();
+    _loadMovies();
   }
 
   Widget _buildMoviesListInterface(String title, List<Movie> movies) {
@@ -60,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       Image.network(
-                        'https://iamge.tmdb.org/t/p/w500${movie.posterPath}',
+                        'https://image.tmdb.org/t/p/w500${movie.posterPath}',
                         height: 150,
                         width: 150,
                         fit: BoxFit.cover,
