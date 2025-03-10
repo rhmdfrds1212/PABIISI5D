@@ -56,20 +56,27 @@ class _HomeScreenState extends State<HomeScreen> {
               itemCount: movies.length,
               itemBuilder: (BuildContext context, int index) {
                 final Movie movie = movies[index];
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Image.network(
-                        'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                        height: 150,
-                        width: 150,
-                        fit: BoxFit.cover,
-                      ),
-                      const SizedBox(height: 5),
-                      Text(movie.title,
-                          style: const TextStyle(fontWeight: FontWeight.bold)),
-                    ],
+                return GestureDetector(
+                  onTap: () {
+                    // Navigator.push(
+                    //     context, MaterialPageRoute(builder: (context) => {}));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Image.network(
+                          'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                          height: 150,
+                          width: 150,
+                          fit: BoxFit.cover,
+                        ),
+                        const SizedBox(height: 5),
+                        Text(movie.title,
+                            style:
+                                const TextStyle(fontWeight: FontWeight.bold)),
+                      ],
+                    ),
                   ),
                 );
               }),
@@ -85,7 +92,11 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Film'),
       ),
       body: Column(
-        children: [_buildMoviesListInterface('All Movies', _allMovies)],
+        children: [
+          _buildMoviesListInterface('All Movies', _allMovies),
+          _buildMoviesListInterface('Trending Movies', _trendingMovies),
+          _buildMoviesListInterface('Popular Movies', _popularMovies),
+        ],
       ),
     );
   }
