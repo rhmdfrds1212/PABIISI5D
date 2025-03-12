@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_film/models/movie.dart';
+import 'package:flutter_application_film/screens/detail_screen.dart';
 import 'package:flutter_application_film/services/api_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,7 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     setState(() {
       _allMovies = allMoviesData.map((e) => Movie.fromJson(e)).toList();
-      print(_allMovies.toString());
       _trendingMovies = trendMoviesData.map((e) => Movie.fromJson(e)).toList();
       _popularMovies = popularMoviesData.map((e) => Movie.fromJson(e)).toList();
     });
@@ -45,9 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(title,
-              style:
-                  const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          child: Text(
+            title,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
         ),
         SizedBox(
           height: 200,
@@ -57,10 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (BuildContext context, int index) {
                 final Movie movie = movies[index];
                 return GestureDetector(
-                  onTap: () {
-                    // Navigator.push(
-                    //     context, MaterialPageRoute(builder: (context) => {}));
-                  },
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailScreen(movie: movie))),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -71,7 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 150,
                           fit: BoxFit.cover,
                         ),
-                        const SizedBox(height: 5),
+                        const SizedBox(
+                          height: 5,
+                        ),
                         Text(movie.title,
                             style:
                                 const TextStyle(fontWeight: FontWeight.bold)),
@@ -91,12 +94,14 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Film'),
       ),
-      body: Column(
-        children: [
-          _buildMoviesListInterface('All Movies', _allMovies),
-          _buildMoviesListInterface('Trending Movies', _trendingMovies),
-          _buildMoviesListInterface('Popular Movies', _popularMovies),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildMoviesListInterface('All Movies', _allMovies),
+            _buildMoviesListInterface('Trending Movies', _trendingMovies),
+            _buildMoviesListInterface('Popular Movies', _popularMovies),
+          ],
+        ),
       ),
     );
   }
