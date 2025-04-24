@@ -90,4 +90,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'prjpab2-si6d-fe8fe.firebasestorage.app',
     measurementId: 'G-Q8H7Q2L93D',
   );
+
 }
