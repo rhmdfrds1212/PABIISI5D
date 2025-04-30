@@ -1,3 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fasumsi6d/screens/home_screen.dart';
+import 'package:fasumsi6d/screens/sign_in_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -139,5 +143,71 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
+  }
+
+    bool _isValidEmail(String email) {
+    String emailRegex =
+        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zAZ0-9-]+)*$";
+    return RegExp(emailRegex).hasMatch(email);
+  }
+
+  String _getAuthErrorMessage(String code) {
+    switch (code) {
+      case 'weak-password':
+        return 'The password provided is too weak.';
+      case 'email-already-in-use':
+        return 'The account already exists for that email.';
+      case 'invalid-email':
+        return 'The email address is not valid.';
+      default:
+        return 'An error occurred. Please try again.';
+    }
+  }
+
+  void _showErrorMessage(String message) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  void _signUp() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    final String email = _emailController.text.trim();
+    final String password = _passwordController.text;
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final UserCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(UserCredential.user!.uid)
+          .set({
+            'fullname': _fullNameController.text,
+            'email': _emailController.text,
+            'password': _passwordController.text,
+          });
+
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+        (route) => false,
+      );
+    } on FirebaseAuthException catch (error) {
+      _showErrorMessage(_getAuthErrorMessage(error.code));
+    } catch (e) {
+      _showErrorMessage('An error Occured : $e');
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 }
