@@ -28,116 +28,123 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 32),
-                TextFormField(
-                  controller: _fullNameController,
-                  textCapitalization: TextCapitalization.words,
-                  decoration: const InputDecoration(
-                    labelText: 'FullName',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.person),
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 32),
+                  TextFormField(
+                    controller: _fullNameController,
+                    textCapitalization: TextCapitalization.words,
+                    decoration: const InputDecoration(
+                      labelText: 'FullName',
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.person),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Please Enter Your Full Name';
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Please Enter Your Full Name';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-                const SizedBox(height: 16.0),
-                TextFormField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.email),
+                  const SizedBox(height: 16.0),
+                  TextFormField(
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      labelText: 'Email',
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.email),
+                    ),
+                    validator: (value) {
+                      if (value == null ||
+                          value.isEmpty ||
+                          !_isValidEmail(value)) {
+                        return 'Please Enter a valid Email';
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
-                  validator: (value) {
-                    if (value == null) {
-                      return 'Please Enter a valid Email';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  controller: _passwordController,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.lock),
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _isPasswordVisible = !_isPasswordVisible;
-                        });
-                      },
-                      icon: Icon(
-                        _isPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _isPasswordVisible = !_isPasswordVisible;
+                          });
+                        },
+                        icon: Icon(
+                          _isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
                       ),
                     ),
+                    obscureText: !_isPasswordVisible,
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Please Enter Your Password';
+                      }
+
+                      if (value.length < 6) {
+                        return 'Password must be at least 6 characters';
+                      }
+                      return null;
+                    },
                   ),
-                  obscureText: !_isPasswordVisible,
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Please Enter Your Full Name';
-                    }
-                    
-                    if (value.length < 6) {
-                      return 'Password must be at least 6 characters';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  controller: _confirmPasswordController,
-                  decoration: InputDecoration(
-                    labelText: 'Confirm Password',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.lock),
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
-                        });
-                      },
-                      icon: Icon(
-                        _isConfirmPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    controller: _confirmPasswordController,
+                    decoration: InputDecoration(
+                      labelText: 'Confirm Password',
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _isConfirmPasswordVisible =
+                                !_isConfirmPasswordVisible;
+                          });
+                        },
+                        icon: Icon(
+                          _isConfirmPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
                       ),
                     ),
+                    obscureText: !_isConfirmPasswordVisible,
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Please Enter Your Full Name';
+                      }
+
+                      if (value != _passwordController.text) {
+                        return 'Password do not match';
+                      }
+                      return null;
+                    },
                   ),
-                  obscureText: !_isConfirmPasswordVisible,
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Please Enter Your Full Name';
-                    }
-                    
-                    if (value != _passwordController.text) {
-                      return 'Password do not match';
-                    }
-                    return null;
-                  },
-                ),
-                _isLoading ? 
-                const CircularProgressIndicator() : 
-                ElevatedButton(onPressed: () {
-                  _signUp();
-                }, 
-                child: const Text('Sign Up')),
-              ],
+                  _isLoading
+                      ? const CircularProgressIndicator()
+                      : ElevatedButton(
+                        onPressed: () {
+                          _signUp();
+                        },
+                        child: const Text('Sign Up'),
+                      ),
+                ],
+              ),
             ),
           ),
         ),
@@ -145,7 +152,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-    bool _isValidEmail(String email) {
+  bool _isValidEmail(String email) {
     String emailRegex =
         r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zAZ0-9-]+)*$";
     return RegExp(emailRegex).hasMatch(email);

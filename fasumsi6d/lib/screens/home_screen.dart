@@ -13,7 +13,13 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Home'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.logout))],
+          IconButton(
+            onPressed: () {
+              signOut(context);
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
       ),
     );
   }
