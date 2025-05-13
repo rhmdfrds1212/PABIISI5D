@@ -1,3 +1,4 @@
+import 'package:fasumsi6d/screens/add_post_screen.dart';
 import 'package:fasumsi6d/screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,6 +21,14 @@ class HomeScreen extends StatelessWidget {
             icon: const Icon(Icons.logout),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (context) => AddPostScreen()));
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
