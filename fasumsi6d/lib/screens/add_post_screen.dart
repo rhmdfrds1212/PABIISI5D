@@ -40,23 +40,24 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   color: Colors.green[300],
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: _image != null
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.file(
-                          _image!,
-                          height: 250,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
+                child:
+                    _image != null
+                        ? ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.file(
+                            _image!,
+                            height: 250,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                        : Center(
+                          child: Icon(
+                            Icons.add_a_photo,
+                            size: 50,
+                            color: Colors.grey,
+                          ),
                         ),
-                      )
-                    : Center(
-                        child: Icon(
-                          Icons.add_a_photo,
-                          size: 50,
-                          color: Colors.grey,
-                        ),
-                      ),
               ),
             ),
             const SizedBox(height: 16),
@@ -84,17 +85,18 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 textStyle: const TextStyle(fontSize: 16),
                 backgroundColor: Colors.green,
               ),
-              child: _isUploading
-                  ? const SizedBox(
-                      height: 24,
-                      width: 24,
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          Colors.white,
+              child:
+                  _isUploading
+                      ? const SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.white,
+                          ),
                         ),
-                      ),
-                    )
-                  : const Text('Post'),
+                      )
+                      : const Text('Post'),
             ),
           ],
         ),
@@ -105,25 +107,26 @@ class _AddPostScreenState extends State<AddPostScreen> {
   void _showImageSourceDialog() {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text("Choose Image Source"),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              _pickImage(ImageSource.camera);
-            },
-            child: Text("Camera"),
+      builder:
+          (context) => AlertDialog(
+            title: Text("Choose Image Source"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  _pickImage(ImageSource.camera);
+                },
+                child: Text("Camera"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  _pickImage(ImageSource.gallery);
+                },
+                child: Text("Gallery"),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              _pickImage(ImageSource.gallery);
-            },
-            child: Text("Gallery"),
-          ),
-        ],
-      ),
     );
   }
 

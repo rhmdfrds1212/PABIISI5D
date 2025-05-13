@@ -85,11 +85,11 @@ class _SignInScreenState extends State<SignInScreen> {
                   _isLoading
                       ? const CircularProgressIndicator()
                       : ElevatedButton(
-                          onPressed: () {
-                            _signIn();
-                          },
-                          child: const Text('Sign In'),
-                        ),
+                        onPressed: () {
+                          _signIn();
+                        },
+                        child: const Text('Sign In'),
+                      ),
                   const SizedBox(height: 32),
                   RichText(
                     text: TextSpan(
@@ -105,15 +105,16 @@ class _SignInScreenState extends State<SignInScreen> {
                             color: Colors.blue,
                             fontWeight: FontWeight.bold,
                           ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignUpScreen(),
-                                ),
-                              );
-                            },
+                          recognizer:
+                              TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SignUpScreen(),
+                                    ),
+                                  );
+                                },
                         ),
                       ],
                     ),
