@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fasumsi6d/screens/add_post_screen.dart';
 import 'package:fasumsi6d/screens/detail_screen.dart';
@@ -51,29 +50,25 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-
       body: RefreshIndicator(
         onRefresh: () async {
           setState(() {});
         },
         child: StreamBuilder(
-          stream:
-              FirebaseFirestore.instance
-                  .collection('posts')
-                  .orderBy('createdAt', descending: true)
-                  .snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection('posts')
+              .orderBy('createdAt', descending: true)
+              .snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return const Center(child: CircularProgressIndicator());
             }
 
-            final posts =
-                snapshot.data!.docs.where((doc) {
-                  final data = doc.data();
-                  final category = data['category'] ?? 'lainnya';
-                  return selectedCategory == null ||
-                      selectedCategory == category;
-                }).toList();
+            final posts = snapshot.data!.docs.where((doc) {
+              final data = doc.data();
+              final category = data['category'] ?? 'lainnya';
+              return selectedCategory == null || selectedCategory == category;
+            }).toList();
 
             // if (posts.isEmpty) {
             //   return const Center(
@@ -100,17 +95,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder:
-                            (context) => DetailScreen(
-                              imageBase64: imageBase64,
-                              description: description,
-                              createdAt: createdAt,
-                              fullname: fullName,
-                              latitude: latitude,
-                              longitude: longitude,
-                              category: category,
-                              heroTag: heroTag,
-                            ),
+                        builder: (context) => DetailScreen(
+                          imageBase64: imageBase64,
+                          description: description,
+                          createdAt: createdAt,
+                          fullname: fullName,
+                          latitude: latitude,
+                          longitude: longitude,
+                          category: category,
+                          heroTag: heroTag,
+                        ),
                       ),
                     );
                   },
@@ -174,7 +168,6 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(
