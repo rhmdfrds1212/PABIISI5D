@@ -41,53 +41,53 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDGpMC3-vftDfEnslA9NJ0WYYvxSfhKdTU',
-    appId: '1:582005089417:web:ef89c2424152652488d258',
-    messagingSenderId: '582005089417',
-    projectId: 'prjpab2-si6d-fe8fe',
-    authDomain: 'prjpab2-si6d-fe8fe.firebaseapp.com',
-    databaseURL: 'https://prjpab2-si6d-fe8fe-default-rtdb.firebaseio.com',
-    storageBucket: 'prjpab2-si6d-fe8fe.firebasestorage.app',
-    measurementId: 'G-VK2CG9SQ7R',
+    apiKey: 'AIzaSyCEUmsA3VDiYnx-d91UCpM8uljKUF8nahw',
+    appId: '1:10951648592:web:5fc771800918b7d43eb855',
+    messagingSenderId: '10951648592',
+    projectId: 'prjpab2-si6d-171129',
+    authDomain: 'prjpab2-si6d-171129.firebaseapp.com',
+    databaseURL: 'https://prjpab2-si6d-171129-default-rtdb.firebaseio.com',
+    storageBucket: 'prjpab2-si6d-171129.firebasestorage.app',
+    measurementId: 'G-RG0CQMVC34',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAJUTs4uLR4e6sV7ca_S_MZQ4EAePWsuaA',
-    appId: '1:582005089417:android:761d12d836316f8988d258',
-    messagingSenderId: '582005089417',
-    projectId: 'prjpab2-si6d-fe8fe',
-    databaseURL: 'https://prjpab2-si6d-fe8fe-default-rtdb.firebaseio.com',
-    storageBucket: 'prjpab2-si6d-fe8fe.firebasestorage.app',
+    apiKey: 'AIzaSyBHmIQC6poS-flazOY2tokDajSu69vnWdI',
+    appId: '1:10951648592:android:053b42106f0848f33eb855',
+    messagingSenderId: '10951648592',
+    projectId: 'prjpab2-si6d-171129',
+    databaseURL: 'https://prjpab2-si6d-171129-default-rtdb.firebaseio.com',
+    storageBucket: 'prjpab2-si6d-171129.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyChWDu3wX44Ph6nHn0AK9tMqfhbMaw2p80',
-    appId: '1:582005089417:ios:c6d5bee18b7a201688d258',
-    messagingSenderId: '582005089417',
-    projectId: 'prjpab2-si6d-fe8fe',
-    databaseURL: 'https://prjpab2-si6d-fe8fe-default-rtdb.firebaseio.com',
-    storageBucket: 'prjpab2-si6d-fe8fe.firebasestorage.app',
+    apiKey: 'AIzaSyANa1YwhxOppXoSUF1u27HlwqTTqGySmMw',
+    appId: '1:10951648592:ios:d97feaa145e83e913eb855',
+    messagingSenderId: '10951648592',
+    projectId: 'prjpab2-si6d-171129',
+    databaseURL: 'https://prjpab2-si6d-171129-default-rtdb.firebaseio.com',
+    storageBucket: 'prjpab2-si6d-171129.firebasestorage.app',
     iosBundleId: 'com.example.flutterDaftarBelanja',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyChWDu3wX44Ph6nHn0AK9tMqfhbMaw2p80',
-    appId: '1:582005089417:ios:c6d5bee18b7a201688d258',
-    messagingSenderId: '582005089417',
-    projectId: 'prjpab2-si6d-fe8fe',
-    databaseURL: 'https://prjpab2-si6d-fe8fe-default-rtdb.firebaseio.com',
-    storageBucket: 'prjpab2-si6d-fe8fe.firebasestorage.app',
+    apiKey: 'AIzaSyANa1YwhxOppXoSUF1u27HlwqTTqGySmMw',
+    appId: '1:10951648592:ios:d97feaa145e83e913eb855',
+    messagingSenderId: '10951648592',
+    projectId: 'prjpab2-si6d-171129',
+    databaseURL: 'https://prjpab2-si6d-171129-default-rtdb.firebaseio.com',
+    storageBucket: 'prjpab2-si6d-171129.firebasestorage.app',
     iosBundleId: 'com.example.flutterDaftarBelanja',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDGpMC3-vftDfEnslA9NJ0WYYvxSfhKdTU',
-    appId: '1:582005089417:web:e4570253ad0d2f1888d258',
-    messagingSenderId: '582005089417',
-    projectId: 'prjpab2-si6d-fe8fe',
-    authDomain: 'prjpab2-si6d-fe8fe.firebaseapp.com',
-    databaseURL: 'https://prjpab2-si6d-fe8fe-default-rtdb.firebaseio.com',
-    storageBucket: 'prjpab2-si6d-fe8fe.firebasestorage.app',
-    measurementId: 'G-DNQWW7NE02',
+    apiKey: 'AIzaSyCEUmsA3VDiYnx-d91UCpM8uljKUF8nahw',
+    appId: '1:10951648592:web:c95d44ef2fec80ef3eb855',
+    messagingSenderId: '10951648592',
+    projectId: 'prjpab2-si6d-171129',
+    authDomain: 'prjpab2-si6d-171129.firebaseapp.com',
+    databaseURL: 'https://prjpab2-si6d-171129-default-rtdb.firebaseio.com',
+    storageBucket: 'prjpab2-si6d-171129.firebasestorage.app',
+    measurementId: 'G-EPZWL7K66L',
   );
 }

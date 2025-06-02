@@ -61,7 +61,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => DetailScreen(movie: movie))),
+                          builder: (context) => DetailScreen(movie: movie))
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(

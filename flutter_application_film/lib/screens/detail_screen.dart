@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_film/models/movie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,16 +29,15 @@ class _DetailScreenState extends State<DetailScreen> {
     });
   }
 
-
   Future<void> _toggleFavorite() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _isFavorite = !_isFavorite;
     });
 
-
     if (_isFavorite) {
       final String movieJson = jsonEncode(widget.movie.toJson());
+      print("Movie JSON " + movieJson);
       prefs.setString('movie_${widget.movie.id}', movieJson);
       List<String> favoriteMovieIds =
           prefs.getStringList('favoriteMovies') ?? [];
@@ -72,18 +71,17 @@ class _DetailScreenState extends State<DetailScreen> {
                   fit: BoxFit.cover,
                 ),
                 Positioned(
-              bottom: 8,
-              right: 8,
-              child: IconButton(
-                icon: Icon(
-                  _isFavorite ? Icons.favorite : Icons.favorite_border,
-                  color: Colors.red,
+                  bottom: 8,
+                  right: 8,
+                  child: IconButton(
+                    icon: Icon(
+                      _isFavorite ? Icons.favorite : Icons.favorite_border,
+                      color: Colors.red,
+                    ),
+                    onPressed: _toggleFavorite,
+                    //onPressed: () {},
+                  ),
                 ),
-                onPressed: _toggleFavorite,
-                // onPressed: () {},
-              ),
-            ),
-
                 const SizedBox(
                   height: 20,
                 ),
